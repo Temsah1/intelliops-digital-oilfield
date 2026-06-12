@@ -1,0 +1,15 @@
+{
+  "raw_production_rows": 15634,
+  "raw_maintenance_rows": 124494,
+  "clean_production_rows": 15634,
+  "clean_maintenance_rows": 124493,
+  "db_table_counts": {
+    "equipment": 1169,
+    "maintenance": 124493,
+    "predictions": 0,
+    "production": 15634,
+    "sqlite_sequence": 4,
+    "wells": 7
+  },
+  "elapsed_seconds": 7.93
+}

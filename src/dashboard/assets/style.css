@@ -1,0 +1,386 @@
+/* ============================================================
+   IntelliOps — AI Digital Oilfield Platform
+   Premium Dark Theme — Petroleum Industry Grade
+   Inspired by: Palantir Foundry, SLB Digital, Baker Hughes
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Root Variables ───────────────────────────────────────── */
+:root {
+  --primary:      #00D4FF;
+  --primary-dim:  rgba(0, 212, 255, 0.12);
+  --secondary:    #FF6B35;
+  --success:      #00E676;
+  --warning:      #FFD600;
+  --danger:       #FF1744;
+  --info:         #40C4FF;
+  --bg-dark:      #070B14;
+  --bg-card:      #0D1424;
+  --bg-sidebar:   #080C17;
+  --surface:      #131D2E;
+  --surface-2:    #1A2540;
+  --border:       rgba(0, 212, 255, 0.10);
+  --border-soft:  rgba(255, 255, 255, 0.06);
+  --text-primary: #E8EAED;
+  --text-secondary: #8A95A3;
+  --text-muted:   #4A5568;
+  --glow-primary: 0 0 30px rgba(0, 212, 255, 0.20);
+  --glow-danger:  0 0 30px rgba(255, 23, 68, 0.25);
+  --card-shadow:  0 4px 32px rgba(0, 0, 0, 0.5);
+  --card-shadow-hover: 0 8px 48px rgba(0, 0, 0, 0.7);
+  --transition:   all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Global Reset ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, [class*="css"] {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  color: var(--text-primary) !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.stApp {
+  background: var(--bg-dark) !important;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0,212,255,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255,107,53,0.03) 0%, transparent 50%) !important;
+}
+
+#MainMenu { visibility: hidden; }
+footer    { visibility: hidden; }
+header    { visibility: hidden; }
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+[data-testid="stSidebar"] {
+  background: var(--bg-sidebar) !important;
+  border-right: 1px solid var(--border-soft) !important;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.4) !important;
+}
+[data-testid="stSidebar"] * { color: var(--text-primary) !important; }
+[data-testid="stSidebar"] .stRadio > div > label {
+  padding: 10px 16px !important;
+  border-radius: 8px !important;
+  margin-bottom: 2px !important;
+  transition: var(--transition) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+[data-testid="stSidebar"] .stRadio > div > label:hover {
+  background: rgba(0,212,255,0.06) !important;
+}
+
+/* ── KPI Cards ────────────────────────────────────────────── */
+.kpi-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--surface) 100%);
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: default;
+}
+.kpi-card:hover {
+  border-color: var(--border);
+  box-shadow: var(--glow-primary), var(--card-shadow-hover);
+  transform: translateY(-3px);
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  opacity: 0.7;
+}
+.kpi-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top right, rgba(0,212,255,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+.kpi-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.kpi-value {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.5px;
+}
+.kpi-delta {
+  font-size: 11px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+}
+.kpi-delta.up   { color: var(--success); }
+.kpi-delta.down { color: var(--danger); }
+.kpi-delta.flat { color: var(--text-muted); }
+.kpi-icon {
+  position: absolute;
+  top: 18px; right: 18px;
+  font-size: 26px;
+  opacity: 0.2;
+}
+
+/* ── Section Headers ─────────────────────────────────────── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 32px 0 18px 0;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.section-header h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+.section-badge {
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 10px;
+  color: var(--primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ── Badges ──────────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.badge-critical { background: rgba(255,23,68,0.12);  color: #FF5370; border: 1px solid rgba(255,23,68,0.3); }
+.badge-high     { background: rgba(255,107,53,0.12); color: #FF8A50; border: 1px solid rgba(255,107,53,0.3); }
+.badge-medium   { background: rgba(255,214,0,0.12);  color: #FFD600; border: 1px solid rgba(255,214,0,0.3); }
+.badge-low      { background: rgba(0,230,118,0.12);  color: #00E676; border: 1px solid rgba(0,230,118,0.3); }
+
+/* ── Info / Warning Boxes ────────────────────────────────── */
+.info-box {
+  background: rgba(0, 212, 255, 0.04);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-left: 3px solid var(--primary);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 12px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.warn-box {
+  background: rgba(255, 214, 0, 0.04);
+  border: 1px solid rgba(255, 214, 0, 0.18);
+  border-left: 3px solid var(--warning);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 12px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.success-box {
+  background: rgba(0, 230, 118, 0.04);
+  border: 1px solid rgba(0, 230, 118, 0.18);
+  border-left: 3px solid var(--success);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 12px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── Alert Banners ───────────────────────────────────────── */
+.alert-critical {
+  background: linear-gradient(90deg, rgba(255,23,68,0.12), rgba(255,23,68,0.04));
+  border: 1px solid rgba(255,23,68,0.35);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  animation: pulse-border 2s ease-in-out infinite;
+}
+@keyframes pulse-border {
+  0%, 100% { border-color: rgba(255,23,68,0.35); }
+  50%       { border-color: rgba(255,23,68,0.65); }
+}
+
+/* ── Equation Box ────────────────────────────────────────── */
+.equation-box {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--primary);
+  margin: 12px 0;
+  white-space: pre-wrap;
+  line-height: 1.8;
+}
+
+/* ── Metric Table ────────────────────────────────────────── */
+.metric-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.metric-table th {
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-soft);
+}
+.metric-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text-primary);
+}
+.metric-table tr:hover td { background: rgba(0,212,255,0.03); }
+
+/* ── Upload Area ─────────────────────────────────────────── */
+.upload-zone {
+  border: 2px dashed rgba(0, 212, 255, 0.25);
+  border-radius: 16px;
+  padding: 48px 32px;
+  text-align: center;
+  background: rgba(0, 212, 255, 0.02);
+  transition: var(--transition);
+}
+.upload-zone:hover {
+  border-color: rgba(0, 212, 255, 0.5);
+  background: rgba(0, 212, 255, 0.05);
+}
+
+/* ── Brand ───────────────────────────────────────────────── */
+.brand-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+}
+.brand-subtitle {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 2px;
+}
+
+/* ── Streamlit Overrides ─────────────────────────────────── */
+div[data-testid="stMetric"] {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+}
+div[data-testid="stMetric"] label {
+  color: var(--text-secondary) !important;
+  font-size: 11px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+div[data-testid="stMetric"] [data-testid="stMetricValue"] {
+  color: var(--primary) !important;
+  font-size: 24px !important;
+  font-weight: 800 !important;
+}
+
+.stTabs [data-baseweb="tab-list"] {
+  background: var(--surface) !important;
+  border-radius: 10px;
+  padding: 4px;
+  gap: 4px;
+  border: 1px solid var(--border-soft) !important;
+}
+.stTabs [data-baseweb="tab"] {
+  border-radius: 7px !important;
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+}
+.stTabs [aria-selected="true"] {
+  background: rgba(0, 212, 255, 0.12) !important;
+  color: var(--primary) !important;
+}
+
+.stSelectbox > div > div, .stMultiSelect > div > div {
+  background: var(--surface) !important;
+  border-color: var(--border-soft) !important;
+  border-radius: 10px !important;
+  color: var(--text-primary) !important;
+}
+
+.stButton > button {
+  background: linear-gradient(135deg, var(--primary), #0099CC) !important;
+  color: #000 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.5px !important;
+  padding: 10px 22px !important;
+  transition: var(--transition) !important;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.25) !important;
+}
+.stButton > button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 25px rgba(0, 212, 255, 0.45) !important;
+}
+
+.stProgress > div > div > div {
+  background: linear-gradient(90deg, var(--primary), #0099CC) !important;
+  border-radius: 4px !important;
+}
+
+.stDataFrame, .dataframe {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 10px !important;
+}
+
+/* ── Dividers ─────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--border-soft);
+  margin: 16px 0;
+}
+
+/* ── Responsive adjustments ──────────────────────────────── */
+@media (max-width: 768px) {
+  .kpi-value { font-size: 20px; }
+  .kpi-card  { padding: 16px 18px; }
+  .section-header h2 { font-size: 15px; }
+}
